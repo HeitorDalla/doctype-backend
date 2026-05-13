@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Usuário - Doctype</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <div class="brand">Doc.type</div>
+            <nav>
+                <a href="perfil.html" class="active">Perfil Usuário</a>
+                <a href="usuario.html">Cadastro de Usuário</a>
+                <a href="cadastrar-documento.html">Cadastrar Documentos</a>
+                <a href="consulta-documento.html">Entrada de Documentos</a>
+                <a href="relatorios.html">Relatórios</a>
+            </nav>
+        </aside>
+        <main class="content">
+            <header class="page-header profile-header">
+                <div>
+                    <div class="avatar">LA</div>
+                    <div>
+                        <h1>Lucas Andrade</h1>
+                        <p>lucas.andrade@gmail.com</p>
+                    </div>
+                </div>
+                <a href="#" class="link-button">Editar Perfil</a>
+            </header>
+            <section class="card activity-card">
+                <div class="section-title">Últimas Atividades</div>
+                <ul class="activity-list">
+                    <li><span>Deleta Documento</span><span>25/03/2026 22:00</span></li>
+                    <li><span>Atualiza Documento</span><span>25/03/2026 21:55</span></li>
+                    <li><span>Cria Documento</span><span>25/03/2026 21:50</span></li>
+                </ul>
+            </section>
+            <section class="card table-card">
+                <div class="section-title">Meus Documentos</div>
+                <div class="search-box">
+                    <input type="search" placeholder="Buscar documento...">
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Data/Hora</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Relatório Financeiro</td><td>25/03/2026 14:30</td><td>PDF</td></tr>
+                        <tr><td>Contrato Cliente</td><td>25/03/2026 15:00</td><td>DOCX</td></tr>
+                        <tr><td>Apresentação Projeto</td><td>25/03/2026 16:20</td><td>PPTX</td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

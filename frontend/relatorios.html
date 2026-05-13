@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios - Doctype</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <div class="brand">Doc.type</div>
+            <nav>
+                <a href="perfil.html">Perfil Usuário</a>
+                <a href="usuario.html">Cadastro de Usuário</a>
+                <a href="cadastrar-documento.html">Cadastrar Documentos</a>
+                <a href="consulta-documento.html">Entrada de Documentos</a>
+                <a href="relatorios.html" class="active">Relatórios</a>
+            </nav>
+        </aside>
+        <main class="content">
+            <header class="page-header">
+                <h1>Relatório</h1>
+            </header>
+            <section class="card report-card">
+                <div class="filters-grid">
+                    <label>Nº Protocolo<input type="text" placeholder="001"></label>
+                    <label>Tipo<input type="text" placeholder="PDF"></label>
+                    <label>Status<input type="text" placeholder="Em Análise"></label>
+                    <label>Nome<input type="text" placeholder="Contrato"></label>
+                    <label>Data<input type="date"></label>
+                    <div class="actions bottom-right">
+                        <button class="primary-button" type="button">Buscar</button>
+                    </div>
+                </div>
+            </section>
+            <section class="card table-card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Protocolo</th>
+                            <th>Nome</th>
+                            <th>Data</th>
+                            <th>Tipo</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>001</td><td>Contrato Cliente A</td><td>01/04/2026</td><td>PDF</td><td><span class="status status-yellow">Em Análise</span></td></tr>
+                        <tr><td>002</td><td>Relatório Financeiro</td><td>02/04/2026</td><td>XLSX</td><td><span class="status status-warning">Encaminhado</span></td></tr>
+                        <tr><td>003</td><td>Nota Fiscal 1234</td><td>02/04/2026</td><td>PDF</td><td><span class="status status-success">Aprovado</span></td></tr>
+                        <tr><td>004</td><td>Documento RH</td><td>03/04/2026</td><td>DOCX</td><td><span class="status status-danger">Rejeitado</span></td></tr>
+                        <tr><td>005</td><td>Comprovante Pagamento</td><td>03/04/2026</td><td>PDF</td><td><span class="status status-success">Aprovado</span></td></tr>
+                        <tr><td>006</td><td>Proposta Comercial</td><td>04/04/2026</td><td>PDF</td><td><span class="status status-warning">Encaminhado</span></td></tr>
+                        <tr><td>007</td><td>Relatório Mensal</td><td>04/04/2026</td><td>XLSX</td><td><span class="status status-yellow">Em Análise</span></td></tr>
+                        <tr><td>008</td><td>Cadastro Cliente B</td><td>04/04/2026</td><td>DOCX</td><td><span class="status status-warning">Encaminhado</span></td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

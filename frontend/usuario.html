@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário - Doctype</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <div class="brand">Doc.type</div>
+            <nav>
+                <a href="perfil.html">Perfil Usuário</a>
+                <a href="usuario.html" class="active">Cadastro de Usuário</a>
+                <a href="cadastrar-documento.html">Cadastrar Documentos</a>
+                <a href="consulta-documento.html">Entrada de Documentos</a>
+                <a href="relatorios.html">Relatórios</a>
+            </nav>
+        </aside>
+        <main class="content">
+            <header class="page-header">
+                <h1>Cadastro de Novo Usuário</h1>
+            </header>
+            <section class="card form-card">
+                <div class="section-title">Dados Pessoais</div>
+                <div class="grid-2">
+                    <label>
+                        Nome
+                        <input type="text" placeholder="Nome completo">
+                    </label>
+                    <label>
+                        Telefone
+                        <input type="tel" placeholder="(00) 00000-0000">
+                    </label>
+                    <label>
+                        Email
+                        <input type="email" placeholder="email@dominio.com">
+                    </label>
+                    <label>
+                        CPF
+                        <input type="text" placeholder="000.000.000-00">
+                    </label>
+                    <label class="full-width">
+                        Endereço
+                        <input type="text" placeholder="Rua, número, bairro">
+                    </label>
+                    <label>
+                        CEP
+                        <input type="text" placeholder="00000-000">
+                    </label>
+                </div>
+            </section>
+            <section class="card form-card">
+                <div class="section-title">Acesso</div>
+                <div class="grid-2">
+                    <label>
+                        Usuário
+                        <input type="text" placeholder="Usuário">
+                    </label>
+                    <label>
+                        Senha
+                        <input type="password" placeholder="Senha">
+                    </label>
+                </div>
+                <div class="radio-group">
+                    <span>Perfil de acesso</span>
+                    <label><input type="radio" name="role" checked> Administrador</label>
+                    <label><input type="radio" name="role"> Operador</label>
+                    <label><input type="radio" name="role"> Visualizador</label>
+                </div>
+                <div class="actions">
+                    <button class="primary-button" type="button">Criar Usuário</button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

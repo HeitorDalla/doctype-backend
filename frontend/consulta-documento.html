@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Documentos - Doctype</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <div class="brand">Doc.type</div>
+            <nav>
+                <a href="perfil.html">Perfil Usuário</a>
+                <a href="usuario.html">Cadastro de Usuário</a>
+                <a href="cadastrar-documento.html">Cadastrar Documentos</a>
+                <a href="consulta-documento.html" class="active">Entrada de Documentos</a>
+                <a href="relatorios.html">Relatórios</a>
+            </nav>
+        </aside>
+        <main class="content">
+            <header class="page-header">
+                <h1>Consulta de Documento</h1>
+                <div class="search-box wide">
+                    <input type="search" placeholder="Buscar documento...">
+                </div>
+            </header>
+            <section class="card table-card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Protocolo</th>
+                            <th>Nome do Doc.</th>
+                            <th>Data</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>000000001</td><td>Contrato</td><td>01/04/2026</td><td><span class="status status-success">Finalizado</span></td></tr>
+                        <tr><td>000000002</td><td>Relatório Financeiro</td><td>08/03/2026</td><td><span class="status status-warning">Encaminhado</span></td></tr>
+                        <tr><td>000000003</td><td>Licitação</td><td>22/02/2026</td><td><span class="status status-yellow">Em Análise</span></td></tr>
+                        <tr><td>000000004</td><td>Nota Fiscal</td><td>20/02/2026</td><td><span class="status status-success">Finalizado</span></td></tr>
+                        <tr><td>000000005</td><td>Declaração</td><td>28/01/2026</td><td><span class="status status-yellow">Em Análise</span></td></tr>
+                        <tr><td>000000006</td><td>Procuração</td><td>18/01/2026</td><td><span class="status status-danger">Rejeitado</span></td></tr>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <button>&lt;</button>
+                    <button class="active">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <span>Mostrando 1 a 10 de 25 resultados</span>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
