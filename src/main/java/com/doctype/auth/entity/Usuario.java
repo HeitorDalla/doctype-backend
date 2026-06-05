@@ -24,6 +24,20 @@ public class Usuario {
     @Column(nullable = false)
     private String nome;
 
+    @Column(name = "nome_usuario", unique = true)
+    private String nomeUsuario;
+
+    private String telefone;
+
+    private String cpf;
+
+    private String endereco;
+
+    private String cep;
+
+    @Column(name = "perfil_acesso")
+    private String perfilAcesso;
+
     @Column(name = "ativo")
     private Boolean ativo = true;
 
