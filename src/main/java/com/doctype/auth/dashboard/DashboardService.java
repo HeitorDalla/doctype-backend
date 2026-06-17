@@ -18,10 +18,10 @@ public class DashboardService {
         return ResumoDashboardDTO.builder()
                 .totalUsuarios(usuarioRepository.count())
                 .totalDocumentos(totalDocumentos)
-                .documentosEmAnalise(contarPorStatus("Em Análise"))
+            .documentosEmAnalise(contarPorStatus("Em análise"))
                 .documentosEncaminhados(contarPorStatus("Encaminhado"))
-                .documentosAprovados(contarPorStatus("Aprovado"))
-                .documentosRejeitados(contarPorStatus("Rejeitado"))
+            .documentosAprovados(0)
+            .documentosRejeitados(0)
                 .documentosFinalizados(contarPorStatus("Finalizado"))
                 .build();
     }

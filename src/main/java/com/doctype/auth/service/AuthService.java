@@ -12,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Locale;
+
 @Service
 @Slf4j
 @Transactional
@@ -49,6 +51,7 @@ public class AuthService {
                 .id(usuario.getId())
                 .email(usuario.getEmail())
                 .nome(usuario.getNome())
+            .perfilAcesso(usuario.getPerfilAcesso())
                 .token(token)
                 .tokenType("Bearer")
                 .expiresIn(jwtTokenProvider.getJwtExpirationInMillis())
@@ -67,6 +70,7 @@ public class AuthService {
                 .nome(request.getNome())
                 .email(request.getEmail())
                 .senha(passwordEncoder.encode(request.getSenha()))
+            .perfilAcesso(normalizarPerfil(request.getPerfilAcesso()))
                 .ativo(true)
                 .build();
 
@@ -79,10 +83,24 @@ public class AuthService {
                 .id(usuario.getId())
                 .email(usuario.getEmail())
                 .nome(usuario.getNome())
+            .perfilAcesso(usuario.getPerfilAcesso())
                 .token(token)
                 .tokenType("Bearer")
                 .expiresIn(jwtTokenProvider.getJwtExpirationInMillis())
                 .build();
+    }
+
+    private String normalizarPerfil(String perfilAcesso) {
+        if (perfilAcesso == null || perfilAcesso.isBlank()) {
+            return "OPERADOR";
+        }
+
+        String perfil = perfilAcesso.trim().toUpperCase(Locale.ROOT);
+        if (!"ADMINISTRADOR".equals(perfil) && !"OPERADOR".equals(perfil)) {
+            throw new RuntimeException("Perfil inválido. Permitidos: ADMINISTRADOR, OPERADOR");
+        }
+
+        return perfil;
     }
 
 }

@@ -1,5 +1,8 @@
 package com.doctype.auth.documento;
 
+import com.doctype.auth.atividade.AtividadeResponseDTO;
+import jakarta.validation.Valid;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -26,9 +30,12 @@ public class DocumentoController {
             @RequestParam(required = false) String status,
             @RequestParam(required = false) String tipo,
             @RequestParam(required = false) String protocolo,
-            @RequestParam(required = false) String nome
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) String remetente,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataInicio,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataFim
     ) {
-        return ResponseEntity.ok(documentoService.listar(termo, status, tipo, protocolo, nome));
+        return ResponseEntity.ok(documentoService.listar(termo, status, tipo, protocolo, nome, remetente, dataInicio, dataFim));
     }
 
     @GetMapping("/meus-documentos")
@@ -47,8 +54,9 @@ public class DocumentoController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DocumentoResponseDTO> criar(@RequestBody DocumentoRequestDTO request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(documentoService.criar(request));
+    public ResponseEntity<DocumentoResponseDTO> criar(@RequestBody DocumentoRequestDTO request, Authentication authentication) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(documentoService.criar(request, authentication != null ? authentication.getName() : null));
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -60,7 +68,8 @@ public class DocumentoController {
             @RequestParam(required = false) String arquivoNome,
             @RequestParam(required = false) String arquivoContentType,
             @RequestParam(required = false) Long usuarioId,
-            @RequestPart(required = false) MultipartFile arquivo
+                @RequestPart(required = false) MultipartFile arquivo,
+                Authentication authentication
     ) {
         DocumentoRequestDTO request = DocumentoRequestDTO.builder()
                 .nome(nome)
@@ -72,6 +81,28 @@ public class DocumentoController {
                 .usuarioId(usuarioId)
                 .build();
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(documentoService.criar(request, arquivo));
+            return ResponseEntity.status(HttpStatus.CREATED)
+                .body(documentoService.criar(request, arquivo, authentication != null ? authentication.getName() : null));
+            }
+
+            @PatchMapping("/{id}/status")
+            public ResponseEntity<DocumentoResponseDTO> atualizarStatus(
+                @PathVariable Long id,
+                @Valid @RequestBody AtualizarStatusDocumentoRequestDTO request,
+                Authentication authentication
+            ) {
+            return ResponseEntity.ok(
+                documentoService.atualizarStatus(id, request.getStatus(), authentication != null ? authentication.getName() : null)
+            );
+            }
+
+            @GetMapping("/{id}/historico")
+            public ResponseEntity<List<AtividadeResponseDTO>> historico(@PathVariable Long id) {
+            return ResponseEntity.ok(documentoService.listarHistorico(id));
+            }
+
+            @GetMapping("/status-opcoes")
+            public ResponseEntity<List<String>> statusOpcoes() {
+            return ResponseEntity.ok(DocumentoStatus.opcoes());
     }
 }

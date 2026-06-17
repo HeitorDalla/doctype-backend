@@ -27,12 +27,15 @@ public class RelatorioController {
             @RequestParam(required = false) String tipo,
             @RequestParam(required = false) String protocolo,
             @RequestParam(required = false) String nome,
+            @RequestParam(required = false) String remetente,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataInicio,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataFim,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data
     ) {
         if (data != null) {
             return ResponseEntity.ok(documentoService.filtrarPorData(data));
         }
 
-        return ResponseEntity.ok(documentoService.listar(termo, status, tipo, protocolo, nome));
+        return ResponseEntity.ok(documentoService.listar(termo, status, tipo, protocolo, nome, remetente, dataInicio, dataFim));
     }
 }

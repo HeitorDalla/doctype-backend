@@ -11,6 +11,8 @@ public interface DocumentoRepository extends JpaRepository<Documento, Long> {
 
     Optional<Documento> findByProtocolo(String protocolo);
 
+    boolean existsByProtocolo(String protocolo);
+
     List<Documento> findAllByOrderByCriadoEmDesc();
 
     List<Documento> findByUsuarioEmailOrderByCriadoEmDesc(String email);

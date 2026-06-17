@@ -11,4 +11,6 @@ public interface AtividadeRepository extends JpaRepository<Atividade, Long> {
     List<Atividade> findTop10ByUsuarioEmailOrderByCriadoEmDesc(String email);
 
     List<Atividade> findTop10ByOrderByCriadoEmDesc();
+
+    List<Atividade> findByDocumentoIdOrderByCriadoEmDesc(Long documentoId);
 }

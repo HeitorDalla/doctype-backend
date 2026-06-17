@@ -62,9 +62,5 @@ public class Documento {
         if (criadoEm == null) {
             criadoEm = LocalDateTime.now();
         }
-
-        if (protocolo == null || protocolo.isBlank()) {
-            protocolo = String.valueOf(System.currentTimeMillis());
-        }
     }
 }

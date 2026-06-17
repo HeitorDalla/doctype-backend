@@ -20,4 +20,6 @@ public class RegistroRequestDTO {
     @Size(min = 6, max = 100, message = "Senha deve ter entre 6 e 100 caracteres")
     private String senha;
 
+    private String perfilAcesso;
+
 }

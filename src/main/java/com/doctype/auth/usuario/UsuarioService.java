@@ -112,6 +112,11 @@ public class UsuarioService {
             return "OPERADOR";
         }
 
-        return perfilAcesso.trim().toUpperCase(Locale.ROOT);
+        String perfil = perfilAcesso.trim().toUpperCase(Locale.ROOT);
+        if (!"ADMINISTRADOR".equals(perfil) && !"OPERADOR".equals(perfil)) {
+            throw new RuntimeException("Perfil inválido. Permitidos: ADMINISTRADOR, OPERADOR");
+        }
+
+        return perfil;
     }
 }
