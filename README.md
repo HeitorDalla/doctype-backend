@@ -1,51 +1,57 @@
 # DocType Backend
 
-Backend Spring Boot para o frontend estático em `frontend/`.
+API backend do sistema DocType, desenvolvida com Spring Boot.
 
-Na execução local, o próprio Spring Boot pode servir o frontend na raiz `http://localhost:8081/`.
+## Visão geral
 
-## Como rodar o backend
+O projeto expõe endpoints REST para autenticação, usuários, documentos, atividades, dashboard, tipos de documento e relatórios. A aplicação usa JWT para proteger a maior parte das rotas.
 
-1. Abra um terminal na pasta raiz do projeto.
-2. Rode:
+## Tecnologias
+
+- Java 17
+- Spring Boot 3.2
+- Spring Web
+- Spring Security
+- Spring Data JPA
+- MySQL
+- JWT
+
+## Como rodar
+
+1. Abra um terminal na raiz do projeto.
+2. Execute:
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-No Windows PowerShell ou CMD, você também pode usar:
+No Windows, use:
 
 ```powershell
 ./mvnw.cmd spring-boot:run
 ```
 
-O backend sobe em `http://localhost:8081`.
+A aplicação sobe em `http://localhost:8081`.
 
-## Como rodar o frontend
+## Configuração local
 
-O frontend pode ser servido de duas formas:
+O backend está configurado para conectar em um MySQL local com as credenciais abaixo:
 
-1. Pelo Spring Boot, acessando `http://localhost:8081/` depois de subir o backend.
-2. Separado, se o terminal já estiver dentro de `frontend/`, rode:
+- Banco: `cadastro_documentos`
+- Usuário: `root`
+- Senha: `12345678`
 
-```bash
-python -m http.server 5500
+A configuração fica em [src/main/resources/application.properties](src/main/resources/application.properties).
+
+## Autenticação
+
+As rotas `POST /api/auth/login` e `POST /api/auth/registro` são públicas.
+
+As demais rotas protegidas exigem token JWT no header:
+
+```http
+Authorization: Bearer <token>
 ```
-
-Se você estiver na pasta raiz do projeto, use:
-
-```bash
-python -m http.server 5500 -d frontend
-```
-
-Se usar o servidor separado, abra `http://localhost:5500/`. Se usar o Spring Boot, abra `http://localhost:8081/`.
-
-## Fluxo de teste
-
-1. Abra o frontend.
-2. Registre um usuário em `register.html` ou use a conta inicial abaixo.
-3. Faça login.
-4. O dashboard e a tela de perfil já consomem a API local.
 
 ## Conta inicial
 
@@ -54,10 +60,25 @@ Se usar o servidor separado, abra `http://localhost:5500/`. Se usar o Spring Boo
 
 ## Endpoints principais
 
+- `GET /api/health`
 - `POST /api/auth/login`
 - `POST /api/auth/registro`
+- `GET /api/usuarios`
 - `GET /api/usuarios/me`
+- `POST /api/usuarios`
+- `PUT /api/usuarios/{id}`
+- `GET /api/documentos`
 - `GET /api/documentos/meus-documentos`
+- `GET /api/documentos/{id}`
+- `GET /api/documentos/protocolo/{protocolo}`
+- `POST /api/documentos`
 - `GET /api/atividades/recentes`
 - `GET /api/dashboard/resumo`
+- `GET /api/tipos-documento`
+- `POST /api/tipos-documento`
 - `GET /api/relatorios/documentos`
+
+## Observações
+
+- O servidor está configurado na porta `8081`.
+- A aplicação libera arquivos estáticos e a página inicial pelo próprio Spring Boot.
